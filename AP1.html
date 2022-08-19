@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>D3.js  D3.js</title>
+    <meta charset="utf-8"/>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+
+<body>
+<script type="text/javascript">
+    //leemos el csv de avocado y pasamos la data a la funcion do nothing, aunque no hace nada con la data
+    d3.csv("Grafico.csv")
+        .then(function (response) {
+            console.log("estoy adentro del comando que lee csv")
+            console.log(response)
+        });
+
+    function grupos(data) {
+        d3.select("svg")
+            .selectAll("rect.random")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "random")
+            .attr("width", 50)
+            .attr("height", function (d) {
+                return d;
+            })
+            .attr("x", function (d, i) {
+                return i * 60;
+            })
+            .attr("y", function (d) {
+                return 500 - d;
+            })
+            .attr("rx", "15")
+            .attr("ry", "15")
+    }
+
+    grupos(Grafico)
+</script>
+</body>
+</html>
+
